@@ -1,0 +1,162 @@
+﻿<Window x:Class="ShowRoomCars.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShowRoomCars"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="583.333" Width="726.5" WindowStartupLocation="CenterScreen" Background="#0A0A2A" ResizeMode="NoResize">
+    <Grid Background="#FF3D2229">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2191*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox x:Name="LeftBox" Header="Добавление заказов" Foreground="Orange" FontSize="18" HorizontalAlignment="Left" Height="512" Margin="10,10,0,0" VerticalAlignment="Top" Width="321">
+            <StackPanel Margin="0,0,-0.333,-0.333">
+                <Label Content="Номер заказа" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbNumOrder" HorizontalAlignment="Left" Height="23" Margin="15,10,0,0" FontSize="16" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <Label Content="Дата заказа" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbOrderDate" HorizontalAlignment="Left" Height="23" FontSize="16" Margin="15, 10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <Label Content="Форма оплаты" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbPaymentForm" HorizontalAlignment="Left" Height="23" FontSize="16" Margin="15,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <Label Content="Тип автомобиля" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="rbTruck" Foreground="White" FontSize="16" Content="Грузовой" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="rbLight" Foreground="White" FontSize="16" Content="Легковой" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="buttonAddCar" FontSize="18" Content="Добавить авто" HorizontalAlignment="Left" Margin="60,20,0,0" VerticalAlignment="Top" Width="158" Height="47" Click="AddAuto_Click"/>
+                <Button x:Name="buttonAddOrder" FontSize="18" Content="Добавить заказ" HorizontalAlignment="Left" Margin="60,20,0,0" VerticalAlignment="Top" Width="158" Height="45" Click="AddOrder_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="RightBox" Header="Просмотр и редактирование заказов" Foreground="Orange" FontSize="18" HorizontalAlignment="Left" Height="512" Margin="356,10,0,0" VerticalAlignment="Top" Width="352">
+            <StackPanel>
+                <Label Content="Выберите заказ" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbListOrders" FontSize="16" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="262" />
+                <Button x:Name="buttonDeleteOrder" FontSize="18" Content="Удалить заказ" HorizontalAlignment="Left" Margin="90,20,0,0" VerticalAlignment="Top" Width="142" Height="61" Click="DeleteOrder_Click"/>
+                <Button x:Name="buttonShowAndEditOrders" FontSize="18" Content="Просм./редакт." HorizontalAlignment="Left" Margin="90,20,0,0" VerticalAlignment="Top" Width="142" Height="61" Click="ShowAndEdit_Click"/>
+                <Label Content="Алгоритм шифрования" Foreground="White" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cypherType"  HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="150">
+                    <TextBlock>DES</TextBlock>
+                    <TextBlock>AES</TextBlock>
+                </ComboBox>
+                <Button x:Name="buttonSaveObject" Content="Сохранить" FontSize="18" HorizontalAlignment="Left" Margin="90,30,0,0" VerticalAlignment="Top" Width="142" Height="54" Click="SerializeObject_Click"/>
+                <Button x:Name="buttonLoadObject" Content="Загрузить" FontSize="18" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="142" Height="54" Click="Deserialize_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="GrAdditionLightAuto" Header="Добавление авто" Foreground="Orange" FontSize="18" HorizontalAlignment="Left" Height="512" Margin="727,10,0,0" VerticalAlignment="Top" Width="321">
+            <StackPanel>
+                <Label Content="Марка" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbBrandAuto" Margin="19,10,90,0" Width="200">
+                    <TextBlock>Audi</TextBlock>
+                    <TextBlock>Mercedes</TextBlock>
+                    <TextBlock>BMW</TextBlock>
+                    <TextBlock>Volkswagen</TextBlock>
+                    <TextBlock>Toyota</TextBlock>
+                    <TextBlock>Lexus</TextBlock>
+                </ComboBox>
+                <Label Content="Год выпуска" Foreground="White" FontWeight="Bold" FontSize="16" Grid.Column="3" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbYear" Grid.Column="3" HorizontalAlignment="Left" FontSize="16" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+                <Label Content="Цвет" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbColor" FontSize="18" Grid.Column="3" HorizontalAlignment="Left" Margin="20,1,0,0" VerticalAlignment="Top" Width="200">
+                    <TextBlock>Синий</TextBlock>
+                    <TextBlock>Черный</TextBlock>
+                    <TextBlock>Белый</TextBlock>
+                    <TextBlock>Красный</TextBlock>
+                    <TextBlock>Серый</TextBlock>
+                </ComboBox>
+                <Label Content="Мощность (л.с.)" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbPower" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+                <Button x:Name="buttonAddCarAndReturn" Content="Добавить" HorizontalAlignment="Left" Margin="50,60,0,0" VerticalAlignment="Top" Width="140" Height="57" Click="AddCarAndReturn_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="GrAddTrucks" Header="Добавление авто" FontSize="16" Foreground="Orange" HorizontalAlignment="Left" Height="506" Margin="1069,16,0,0" VerticalAlignment="Top" Width="321">
+            <StackPanel>
+                <Label Content="Марка" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,11,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbBrandHeavyAuto" FontSize="18" Grid.Column="3" HorizontalAlignment="Left" Margin="20,1,0,0" VerticalAlignment="Top" Width="200">
+                    <TextBlock>ВАЗ</TextBlock>
+                    <TextBlock>УАЗ</TextBlock>
+                    <TextBlock>МАЗ</TextBlock>
+                    <TextBlock>КАМАЗ</TextBlock>
+                </ComboBox>
+                <Label Content="Год выпуска" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,25,0,0" VerticalAlignment="Top"></Label>
+                <TextBox x:Name="tbYearHeavy" Grid.Column="3" HorizontalAlignment="Left" FontSize="16" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" />
+                <Label Content="Грузоподъемность (т)" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,25,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbLoadCapacity" Grid.Column="3" HorizontalAlignment="Left" FontSize="16" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" />
+                <Button x:Name="buttonAddHeavyAndReturn" Content="Добавить" HorizontalAlignment="Left" Margin="50,40,0,0" VerticalAlignment="Top" Width="140" Height="57" Click="AddTruckAndReturn_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox x:Name="GrEditingOrder" Header="Редактирование заказа" Foreground="Orange" FontSize="18" HorizontalAlignment="Left" Height="512" Margin="1450,10,0,0" VerticalAlignment="Top" Width="321">
+            <StackPanel>
+                <Label Content="Номер заказа" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbNumOrderToChange" HorizontalAlignment="Left" Height="23" Margin="15,10,0,0" FontSize="16" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <Label Content="Форма оплаты" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbPaymentFormToChange" HorizontalAlignment="Left" Height="23" FontSize="16" Margin="15,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <Label Content="Дата заказа" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbDateToChange" HorizontalAlignment="Left" Height="23" Margin="15,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210"/>
+                <Label Content="Автомобиль для ред." Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbAutoToEdit" FontSize="16" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="262"/>
+                <Button  x:Name="buttonEditAutoInOrder" FontSize="18" Content="Редактировать авто" HorizontalAlignment="Left" Margin="60,20,0,0" VerticalAlignment="Top" Width="200" Height="27" Click="EditAuto_Click"/>
+                <Button  x:Name="buttonDeleteAutoInOrder" FontSize="18" Content="Удалить авто" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Width="200" Height="27" Click="DeleteCarFromOrder_Click"/>
+                <Button  x:Name="buttonSaveEditings" FontSize="18" Content="Применить изменения" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Width="200" Height="27" Click="buttonSaveChanges_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox x:Name="InformationAboutOrder" Header="Информация о заказе" Foreground="Orange" FontSize="18" HorizontalAlignment="Left" Height="402" Margin="1900,10,-1.667,0" VerticalAlignment="Top" Width="321" Grid.ColumnSpan="5">
+            <StackPanel>
+                <RichTextBox x:Name="InfoBox" Height="200" Width="300" Margin="29,30,29,0">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+                <Button x:Name="UpdateInformation" FontSize="18" Content="Обновить" HorizontalAlignment="Left" Margin="60,20,0,0" VerticalAlignment="Top" Width="200" Height="37" Click="UpdateInfo_Click"/>
+                <Button x:Name="ReturnToMainMenu" FontSize="18" Content="Назад" HorizontalAlignment="Left" Margin="60,20,0,0" VerticalAlignment="Top" Width="200" Height="37" Click="buttonReturnToMainMenu_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="GrEditLightCar" Header="Редактирование авто" Foreground="Orange" FontSize="18" HorizontalAlignment="Left" Height="512" Margin="2327,14,0,0" VerticalAlignment="Top" Width="321">
+            <StackPanel>
+                <Label Content="Марка" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbBrandAuto_Edit" Margin="19,10,90,0" Width="200">
+                    <TextBlock><Run Text="Audi"/></TextBlock>
+                    <TextBlock><Run Text="Mercedes"/></TextBlock>
+                    <TextBlock><Run Text="BMW"/></TextBlock>
+                    <TextBlock><Run Text="Volkswagen"/></TextBlock>
+                    <TextBlock><Run Text="Toyota"/></TextBlock>
+                    <TextBlock><Run Text="Lexus"/></TextBlock>
+                </ComboBox>
+                <Label Content="Год выпуска" Foreground="White" FontWeight="Bold" FontSize="16" Grid.Column="3" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbYear_Edit" Grid.Column="3" HorizontalAlignment="Left" FontSize="16" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+                <Label Content="Цвет" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbColor_Edit" FontSize="18" Grid.Column="3" HorizontalAlignment="Left" Margin="20,1,0,0" VerticalAlignment="Top" Width="200">
+                    <TextBlock><Run Text="Синий"/></TextBlock>
+                    <TextBlock><Run Text="Черный"/></TextBlock>
+                    <TextBlock><Run Text="Белый"/></TextBlock>
+                    <TextBlock><Run Text="Красный"/></TextBlock>
+                    <TextBlock><Run Text="Серый"/></TextBlock>
+                </ComboBox>
+                <Label Content="Мощность (л.с.)" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbPower_Edit" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+                <Button x:Name="buttonEditLightCar" Content="Редактировать" HorizontalAlignment="Left" Margin="50,60,0,0" VerticalAlignment="Top" Width="140" Height="57" Click="buttonEditLightCar_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="GrEditTrucks" Header="Редактирование авто" FontSize="16" Foreground="Orange" HorizontalAlignment="Left" Height="506" Margin="2737,16,0,0" VerticalAlignment="Top" Width="321">
+            <StackPanel>
+                <Label Content="Марка" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,11,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbBrandTruck_Edit" FontSize="18" Grid.Column="3" HorizontalAlignment="Left" Margin="20,1,0,0" VerticalAlignment="Top" Width="200">
+                    <TextBlock><Run Text="ВАЗ"/></TextBlock>
+                    <TextBlock><Run Text="УАЗ"/></TextBlock>
+                    <TextBlock><Run Text="МАЗ"/></TextBlock>
+                    <TextBlock><Run Text="КАМАЗ"/></TextBlock>
+                </ComboBox>
+                <Label Content="Год выпуска" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,25,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbYearHeavy_Edit" Grid.Column="3" HorizontalAlignment="Left" FontSize="16" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" />
+                <Label Content="Грузоподъемность (т)" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,25,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbLoadCapacity_Edit" Grid.Column="3" HorizontalAlignment="Left" FontSize="16" Height="23" Margin="20,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" />
+                <Button x:Name="buttonAddHeavyAndReturn_Edit" Content="Редактировать" HorizontalAlignment="Left" Margin="50,40,0,0" VerticalAlignment="Top" Width="140" Height="57" Click="EditTrucks_Click"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
